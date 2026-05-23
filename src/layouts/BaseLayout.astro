@@ -1,0 +1,94 @@
+---
+// src/layouts/BaseLayout.astro
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | Portfolio</title>
+    
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else {
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', systemPrefersDark ? 'dark' : 'light');
+      }
+    </script>
+
+    <style is:global>
+      /* Dark Theme (Default) */
+      :root {
+        --bg-color: #0d1117;
+        --text-color: #c9d1d9;
+        --heading-color: #f0f6fc;
+        --accent-color: #58a6ff;
+        --card-bg: #161b22;
+        --border-color: #30363d;
+      }
+      
+      /* Light Theme Overrides */
+      html[data-theme="light"] {
+        --bg-color: #ffffff;
+        --text-color: #24292f;
+        --heading-color: #1f2328; 
+        --accent-color: #0969da;
+        --card-bg: #f6f8fa;
+        --border-color: #d0d7de;
+      }
+      
+      /* Base Elements layout */
+      html, body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        color: var(--heading-color);
+      }
+
+      main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid var(--border-color); background: var(--card-bg);">
+      <a href="/" style="color: var(--accent-color); text-decoration: none; font-weight: bold;">Home</a>
+      
+      <button id="theme-toggle" style="background: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500;">
+        Toggle Theme
+      </button>
+    </nav>
+    
+    <main>
+      <slot />
+    </main>
+
+    <script>
+      const toggleBtn = document.getElementById('theme-toggle');
+      
+      toggleBtn?.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+---
+// src/components/ProjectCard.astro
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  bullets: string[];
+  tags: string[];
+  githubUrl: string;
+  liveUrl?: string;
+}
+
+const { title, subtitle, description, bullets, tags, githubUrl, liveUrl } = Astro.props;
+---
+
+<div class="card">
+  <h3>{title}</h3>
+  <h4>{subtitle}</h4>
+  <p>{description}</p>
+  
+  <ul>
+    {bullets.map((bullet) => <li>{bullet}</li>)}
+  </ul>
+
+  <div class="tag-container">
+    {tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+
+  <div class="links-container">
+    <a href={githubUrl} target="_blank" rel="noopener noreferrer" class="link-btn">
+      View GitHub Code →
+    </a>
+    {liveUrl && (
+      <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="link-btn live">
+        Launch Live Site Ext Link ↗
+      </a>
+    )}
+  </div>
+</div>
+
+<style>
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h3 { margin: 0; color: var(--heading-color); font-size: 1.4rem; }
+  h4 { margin: 0.25rem 0 1rem 0; color: var(--accent-color); font-size: 1rem; font-weight: 500; }
+  p { color: var(--text-color); margin-bottom: 0.5rem; }
+  ul { margin: 0 0 1rem 0; padding-left: 1.2rem; color: var(--text-color); font-size: 0.95rem; }
+  li { margin-bottom: 0.4rem; line-height: 1.4; }
+  .tag-container { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+  .tag { background: var(--bg-color); border: 1px solid var(--border-color); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.8rem; }
+  
+  .links-container { display: flex; gap: 1rem; }
+  .link-btn {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .link-btn:hover { text-decoration: underline; }
+</style>

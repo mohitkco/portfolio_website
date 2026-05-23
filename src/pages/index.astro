@@ -1,11 +1,110 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { profileData, projectsData } from '../data/portfolioData';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title={profileData.name}>
+  <section class="section header-section">
+    <h1>{profileData.name}</h1>
+    <p class="meta">{profileData.location} | <a href={`mailto:${profileData.email}`}>{profileData.email}</a></p>
+    <div class="social-links">
+      <a href={profileData.github} target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+      <a href={profileData.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a>
+    </div>
+    <p class="objective">{profileData.objective}</p>
+  </section>
+
+  <section class="section">
+    <h2>Education</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Degree / Course</th>
+            <th>Timeline</th>
+            <th>Institution / Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          {profileData.education.map((edu) => (
+            <tr>
+              <td><strong>{edu.degree}</strong></td>
+              <td>{edu.timeline}</td>
+              <td>{edu.institution} <br/> <small>{edu.grade}</small></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Technical Capabilities</h2>
+    <div class="table-wrapper">
+      <table>
+        <tbody>
+          {profileData.skills.map((skill) => (
+            <tr>
+              <td style="width: 30%;"><strong>{skill.category}</strong></td>
+              <td>{skill.items}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Competitive Programming & Achievements</h2>
+    <div class="cp-grid">
+      {profileData.competitiveProgramming.map((cp) => (
+        <div class="cp-card">
+          <h3>{cp.platform}</h3>
+          <a href={cp.handleUrl} target="_blank" rel="noopener noreferrer" class="handle-link">
+            Verify Profile Handle ↗
+          </a>
+          <p>{cp.stats}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Featured System Architectures</h2>
+    {projectsData.map((project) => (
+      <ProjectCard {...project} />
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .section { margin-bottom: 3.5rem; }
+  h1 { font-size: 2.8rem; margin: 0 0 0.5rem 0; color: var(--heading-color); letter-spacing: -0.5px; }
+  h2 { font-size: 1.8rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.4rem; margin-bottom: 1.5rem; color: var(--heading-color); }
+  
+  .meta { font-size: 1.1rem; margin: 0 0 0.5rem 0; color: var(--text-color); }
+  .meta a { color: var(--accent-color); text-decoration: none; }
+  
+  .social-links { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+  .social-links a { color: var(--accent-color); font-weight: 500; text-decoration: none; font-size: 0.95rem; }
+  .social-links a:hover { text-decoration: underline; }
+  
+  .objective { font-size: 1.1rem; line-height: 1.6; color: var(--text-color); background: var(--card-bg); padding: 1rem; border-left: 4px solid var(--accent-color); border-radius: 0 8px 8px 0; }
+
+  /* Structured Tables */
+  .table-wrapper { width: 100%; overflow-x: auto; margin-bottom: 1rem; }
+  table { width: 100%; border-collapse: collapse; text-align: left; font-size: 1rem; color: var(--text-color); }
+  th, td { padding: 0.8rem; border-bottom: 1px solid var(--border-color); vertical-align: top; }
+  th { background: var(--card-bg); color: var(--heading-color); font-weight: 600; }
+  
+  /* CP Cards setup */
+  .cp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 600px) { .cp-grid { grid-template-columns: 1fr; } }
+  .cp-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 1.2rem; border-radius: 6px; }
+  .cp-card h3 { margin: 0 0 0.25rem 0; font-size: 1.2rem; color: var(--heading-color); }
+  .handle-link { color: var(--accent-color); text-decoration: none; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-bottom: 0.5rem; }
+  .handle-link:hover { text-decoration: underline; }
+  .cp-card p { margin: 0; font-size: 0.95rem; color: var(--text-color); line-height: 1.4; }
+</style>
