@@ -19,7 +19,6 @@ export interface Profile {
     degree: string;
     timeline: string;
     institution: string;
-    grade: string;
   }[];
   skills: {
     category: string;
@@ -43,8 +42,8 @@ export const profileData: Profile = {
     {
       degree: "B.Tech - Computer Science & Engineering",
       timeline: "2024 - 2028",
-      institution: "Indian Institute of Technology (IIT) Bhilai",
-      grade: "CGPA: 8.69/10"
+      institution: "Indian Institute of Technology (IIT) Bhilai"
+      
     }
   ],
   skills: [
