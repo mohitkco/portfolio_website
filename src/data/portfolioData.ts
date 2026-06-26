@@ -85,7 +85,8 @@ export const projectsData: Project[] = [
       "Resolved complex runtime outages by expanding active cloud EBS block storage frameworks and dynamically scaling Linux filesystems safely in production configurations."
     ],
     tags: ["React", "Node.js", "PostgreSQL", "PgVector", "Redis", "Docker", "Nginx", "AWS", "Prisma", "Socket.io"],
-    githubUrl: "https://github.com/mohitkco/ai-realtime-chat"
+    githubUrl: "https://github.com/mohitkco/ai-realtime-chat",
+    liveUrl: "https://itschatapp.duckdns.org" // Added back!
     // liveUrl omitted because there is no live deployment link
   },
   // 2️⃣ Housing web is now second
