@@ -75,17 +75,8 @@ import { profileData, projectsData } from '../data/portfolioData';
     <h2>Featured System Architectures</h2>
     {projectsData.map((project) => (
       <div class="project-card-container">
-        <!-- Renders basic titles, tags, and links from ProjectCard component -->
+        {/* Everything is safely handled within the component layout now to prevent duplicates */}
         <ProjectCard {...project} />
-        
-        <!-- Technical Deep-Dive Bullet Array Grid Elements -->
-        {project.bullets && (
-          <ul class="project-bullets">
-            {project.bullets.map((bullet) => (
-              <li>{bullet}</li>
-            ))}
-          </ul>
-        )}
       </div>
     ))}
   </section>
@@ -127,16 +118,5 @@ import { profileData, projectsData } from '../data/portfolioData';
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-  }
-  .project-bullets {
-    margin-top: 1.25rem;
-    padding-left: 1.5rem;
-    list-style-type: disc;
-    color: var(--text-color);
-    font-size: 0.95rem;
-  }
-  .project-bullets li {
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
   }
 </style>

@@ -38,7 +38,6 @@ export const profileData: Profile = {
   location: "Chapra, Bihar, India",
   github: "https://github.com/mohitkco",
   linkedin: "https://www.linkedin.com/in/mohit107",
-  // ✨ Cleaned objective statement removing legacy wording
   objective: "Computer Science undergraduate specializing in full-stack engineering, high-throughput real-time systems, and vector-driven AI architectures.",
   education: [
     {
@@ -47,14 +46,13 @@ export const profileData: Profile = {
       institution: "Indian Institute of Technology (IIT) Bhilai",
       grade: "CGPA: 8.69/10"
     }
-    // ❌ Legacy Class XII and Class X objects completely removed
   ],
   skills: [
     { category: "Languages", items: "C++, C, Bash Script, RISC-V Assembly, Python, JavaScript, TypeScript, SQL" },
     { 
       category: "Web Dev", 
-      // 🚀 Expanded with your new workspace infrastructure definitions
-      items: "React.js, Node.js, Express.js, MongoDB, Redis Memory Cache, PgVector Semantic Search, Prisma ORM, Socket.io, Tailwind CSS, JavaScript, HTML, CSS" 
+      // 🚀 Added PostgreSQL as requested
+      items: "React.js, Node.js, Express.js, PostgreSQL, MongoDB, Redis Memory Cache, PgVector Semantic Search, Prisma ORM, Socket.io, Tailwind CSS, JavaScript, HTML, CSS" 
     },
     { category: "CS Concepts", items: "Data Structures & Algorithms, OOP" },
     { category: "Tools, Cloud & OS", items: "Docker, Docker Compose, Nginx, AWS EC2, AWS EBS Volume Engineering, Git, GitHub, Linux, Vercel" }
@@ -74,7 +72,23 @@ export const profileData: Profile = {
 };
 
 export const projectsData: Project[] = [
-  // ❌ Legacy Food Ordering Website fully dropped from arrays as requested
+  // 1️⃣ Swapped: Chat Workspace is now first
+  {
+    title: "Full-Stack AI Real-Time Collaboration Workspace",
+    subtitle: "Multi-Container Microservice Platform",
+    description: "A production-grade, multi-container microservice workspace featuring duplex Socket.io communication channels, Redis caching layers, and semantic history searching driven by PostgreSQL PgVector embeddings.",
+    bullets: [
+      "Architected and deployed a multi-container infrastructure on an AWS EC2 instance using Docker Compose and Nginx as a secure reverse proxy gateway.",
+      "Implemented vector-driven semantic search pipelines using Prisma ORM and PgVector to manage 768-dimensional AI embeddings inside PostgreSQL databases.",
+      "Eliminated direct-to-disk bottleneck points under high concurrent volume via a dual long-lived layer using Redis cache memory arrays and Socket.io.",
+      "Engineered automated GitHub Actions workflows to build, verify, and deliver clean containers straight to the production infrastructure during git push events.",
+      "Resolved complex runtime outages by expanding active cloud EBS block storage frameworks and dynamically scaling Linux filesystems safely in production configurations."
+    ],
+    tags: ["React", "Node.js", "PostgreSQL", "PgVector", "Redis", "Docker", "Nginx", "AWS", "Prisma", "Socket.io"],
+    githubUrl: "https://github.com/mohitkco/ai-realtime-chat"
+    // liveUrl omitted because there is no live deployment link
+  },
+  // 2️⃣ Housing web is now second
   {
     title: "Housing Website",
     subtitle: "Multi-Role Server Side Application",
@@ -89,19 +103,5 @@ export const projectsData: Project[] = [
     tags: ["Node.js", "Express.js", "EJS", "Tailwind CSS", "MongoDB", "Mongoose", "Bcrypt"],
     githubUrl: "https://github.com/mohitkco/housing_web.git",
     liveUrl: "https://housing-web-xlf6.onrender.com"
-  },
-  {
-    title: "Full-Stack AI Real-Time Collaboration Workspace",
-    subtitle: "Multi-Container Microservice Platform",
-    description: "A production-grade, multi-container microservice workspace featuring duplex Socket.io communication channels, Redis caching layers, and semantic history searching driven by PostgreSQL PgVector embeddings.",
-    bullets: [
-      "Architected and deployed a multi-container infrastructure on an AWS EC2 instance using Docker Compose and Nginx as a secure reverse proxy gateway.",
-      "Implemented vector-driven semantic search pipelines using Prisma ORM and PgVector to manage 768-dimensional AI embeddings inside PostgreSQL databases.",
-      "Eliminated direct-to-disk bottleneck points under high concurrent volume via a dual long-lived layer using Redis cache memory arrays and Socket.io.",
-      "Engineered automated GitHub Actions workflows to build, verify, and deliver clean containers straight to the production infrastructure during git push events.",
-      "Resolved complex runtime outages by expanding active cloud EBS block storage frameworks and dynamically scaling Linux filesystems safely in production configurations."
-    ],
-    tags: ["React", "Node.js", "PostgreSQL", "PgVector", "Redis", "Docker", "Nginx", "AWS", "Prisma", "Socket.io"],
-    githubUrl: "https://github.com/mohitkco/ai-realtime-chat"
   }
 ];
